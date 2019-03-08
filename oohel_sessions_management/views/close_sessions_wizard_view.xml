@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	data
+	<record model="ir.ui.view" id="close_sessions_wizard_form_view">
+		<field name="name">close_all_sessions_wizard.form.view</field>
+		<field name="model">oohel.sessions_manage</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<script>
+		               	$(document).ready(function(){
+		              		$('.modal-content').css({'max-width': '700px','margin': 'auto','border-radius': '5px'});
+		               		$('.modal-title').css({'text-align': 'center'});
+		               	});
+			        </script>
+					<div class="content">
+						<div class="col-md-12 text-center">
+							<h3>
+								<strong>
+									<p>
+										You will close all sessions including the admin one.
+									</p>
+								</strong>
+							</h3>
+						</div>
+						
+					</div>
+				</sheet>
+				<footer>
+					<button 
+						name="delete_all_session_files"
+						type="object"
+						string="Close all sessions"
+						class="oe_highlight"
+					/>
+
+					<button
+						special="cancel" 
+						string="Cancelar"
+					/>
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<act_window 
+		id="launch_close_all_sessions_wizard"
+		name="Close sessions"
+		res_model="oohel.sessions_manage"
+		view_mode="form"
+		target="new"
+		key2="client_action_multi"
+		/>
+
+	<menuitem 
+		id="close_all_sessions_menuitem"
+		name="Close sessions"
+		parent="base.menu_users"
+		action="launch_close_all_sessions_wizard"
+		sequence="2"
+		/>
+</odoo>
